@@ -30,7 +30,7 @@ The following is the package's default configuration.
 config :clamex, executable_path: "clamdscan"
 ```
 
-If the `clamdscan` is not available in `$PATH` pull path to it can be specified as `executable_path`.
+If the `clamdscan` is not available in `$PATH` full path to it can be specified as `executable_path`.
 
 ## Usage
 
@@ -54,7 +54,7 @@ iex> Clamex.safe?("test/files/safe.txt")
 true
 ```
 
-Note that if there scanner encounters any errors, both `virus?` and `safe?` functions will quietly ignore them and return `false`. If you need to handle errors explicitly use the `scan` function directly.
+Note that if the scanner encounters any errors, both `virus?` and `safe?` functions will quietly ignore them and return `false`. If you need to handle errors explicitly use the `scan` function directly.
 
 Perform the file scan:
 
