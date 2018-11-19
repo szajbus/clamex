@@ -7,21 +7,41 @@ defmodule Clamex.MixProject do
       version: "0.1.0",
       elixir: "~> 1.3",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      package: package(),
+      deps: deps(),
+      description: description(),
+      name: "Clamex",
+      source_url: "https://github.com/szajbus/clamex",
+      docs: docs()
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
-    [
-      extra_applications: [:logger]
-    ]
+    []
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
       {:ex_doc, "~> 0.16.1", only: :dev}
+    ]
+  end
+
+  defp package do
+    [
+      name: "clamex",
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/szajbus/clamex"}
+    ]
+  end
+
+  defp description do
+    "Thin, error-friendly wrapper for ClamAV"
+  end
+
+  defp docs do
+    [
+      main: "readme",
+      extras: ["README.md"]
     ]
   end
 end
