@@ -1,5 +1,7 @@
 # Clamex
 
+[![CircleCI](https://circleci.com/gh/szajbus/clamex/tree/master.svg?style=svg)](https://circleci.com/gh/szajbus/clamex/tree/master)
+
 Clamex is a thin, error-friendly wrapper for [ClamAV](https://www.clamav.net) written in elixir.
 
 ## Installation
