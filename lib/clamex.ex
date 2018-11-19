@@ -1,6 +1,6 @@
 defmodule Clamex do
   @moduledoc """
-  Documentation for Clamex.
+  Clamex is a thin wrapper for ClamAV.
   """
 
   @doc """
