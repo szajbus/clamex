@@ -5,7 +5,7 @@ defmodule Clamex.Scanner.Clamscan do
 
   @behaviour Clamex.Scanner
 
-  @default_args ["--no-summary", "--quiet"]
+  @default_args ["--no-summary"]
 
   def scan(path) do
     try do
