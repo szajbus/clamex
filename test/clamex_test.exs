@@ -19,7 +19,7 @@ defmodule ClamexTest do
   end
 
   test "file does not exist" do
-    path = "non-existent.txt"
+    path = "test/files/non-existent.txt"
 
     assert Clamex.scan(path) == {:error, :cannot_access_file}
     assert Clamex.safe?(path) == false

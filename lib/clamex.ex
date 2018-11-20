@@ -3,6 +3,8 @@ defmodule Clamex do
   Clamex is a thin wrapper for ClamAV.
   """
 
+  @scanner Application.get_env(:clamex, :scanner, Clamex.Scanner.Clamdscan)
+
   @doc """
   Perform file scan
 
@@ -25,12 +27,7 @@ defmodule Clamex do
   """
   @spec scan(Path.t()) :: :ok | {:error, atom()} | {:error, String.t()}
   def scan(path) do
-    with true <- scanner_available?(),
-         :ok <- do_scan(path) do
-      :ok
-    else
-      error -> error
-    end
+    @scanner.scan(path)
   end
 
   @doc """
@@ -72,42 +69,4 @@ defmodule Clamex do
       _ -> false
     end
   end
-
-  defp scanner_available?() do
-    try do
-      {_output, exit_code} =
-        System.cmd(
-          executable_path(),
-          ["--version", "--quiet", "--stdout"]
-        )
-
-      case exit_code do
-        0 -> true
-        _ -> {:error, :scanner_not_available}
-      end
-    rescue
-      _ -> {:error, :scanner_not_available}
-    end
-  end
-
-  defp do_scan(path) do
-    {output, exit_code} =
-      System.cmd(
-        executable_path(),
-        ["--no-summary", "--quiet", "--stdout", path]
-      )
-
-    case exit_code do
-      0 -> :ok
-      1 -> {:error, :virus_found}
-      _ -> {:error, parse_error(output)}
-    end
-  end
-
-  defp parse_error("ERROR: Can't access file" <> _), do: :cannot_access_file
-  defp parse_error("ERROR: Could not connect to clamd" <> _), do: :cannot_connect_to_clamd
-  defp parse_error("ERROR: " <> message), do: parse_error(message)
-  defp parse_error(message), do: message
-
-  defp executable_path, do: Application.get_env(:clamex, :executable_path, "clamdscan")
 end

@@ -1,4 +1,3 @@
 use Mix.Config
 
-config :clamex,
-  executable_path: "clamdscan"
+config :clamex, scanner: Clamex.Scanner.Clamdscan
