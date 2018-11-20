@@ -3,7 +3,7 @@ defmodule ClamexTest do
   doctest Clamex
 
   test "file is safe" do
-    path = "test/files/safe.txt"
+    path = "safe.txt"
 
     assert Clamex.scan(path) == :ok
     assert Clamex.safe?(path) == true
@@ -11,7 +11,7 @@ defmodule ClamexTest do
   end
 
   test "file is infected" do
-    path = "test/files/virus.txt"
+    path = "virus.txt"
 
     assert Clamex.scan(path) == {:error, :virus_found}
     assert Clamex.safe?(path) == false
@@ -19,7 +19,7 @@ defmodule ClamexTest do
   end
 
   test "file does not exist" do
-    path = "test/files/non-existent.txt"
+    path = "missing.txt"
 
     assert Clamex.scan(path) == {:error, :cannot_access_file}
     assert Clamex.safe?(path) == false

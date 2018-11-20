@@ -1,3 +1,7 @@
 use Mix.Config
 
-config :clamex, scanner: Clamex.Scanner.Clamdscan
+if Mix.env() == :test do
+  config :clamex, scanner: Clamex.Scanner.Mock
+else
+  config :clamex, scanner: Clamex.Scanner.Clamdscan
+end

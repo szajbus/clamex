@@ -10,10 +10,10 @@ defmodule Clamex do
 
   ## Examples
 
-      iex> Clamex.scan("test/files/virus.txt")
+      iex> Clamex.scan("virus.txt")
       {:error, :virus_found}
 
-      iex> Clamex.scan("test/files/safe.txt")
+      iex> Clamex.scan("safe.txt")
       :ok
 
   ## Error reasons
@@ -35,10 +35,10 @@ defmodule Clamex do
 
   ## Examples
 
-      iex> Clamex.virus?("test/files/virus.txt")
+      iex> Clamex.virus?("virus.txt")
       true
 
-      iex> Clamex.virus?("test/files/safe.txt")
+      iex> Clamex.virus?("safe.txt")
       false
 
   """
@@ -55,10 +55,10 @@ defmodule Clamex do
 
   ## Examples
 
-      iex> Clamex.safe?("test/files/virus.txt")
+      iex> Clamex.safe?("virus.txt")
       false
 
-      iex> Clamex.safe?("test/files/safe.txt")
+      iex> Clamex.safe?("safe.txt")
       true
 
   """
