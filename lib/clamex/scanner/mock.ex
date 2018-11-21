@@ -52,6 +52,7 @@ defmodule Clamex.Scanner.Mock do
       :ok
 
   """
+  @impl true
   @spec scan(path :: Path.t()) ::
               :ok | {:error, atom()} | {:error, String.t()}
   def scan(path) do

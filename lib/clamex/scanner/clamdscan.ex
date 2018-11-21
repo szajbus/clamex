@@ -25,7 +25,8 @@ defmodule Clamex.Scanner.Clamdscan do
   * any other error reported by the scanner will be returned as is (as String)
 
   """
-  @callback scan(path :: Path.t()) ::
+  @impl true
+  @spec scan(path :: Path.t()) ::
               :ok | {:error, atom()} | {:error, String.t()}
   def scan(path) do
     try do
