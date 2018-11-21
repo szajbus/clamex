@@ -25,7 +25,7 @@ defmodule Clamex do
   * any other error reported by the scanner will be returned as is (as String)
 
   """
-  @spec scan(Path.t()) :: :ok | {:error, atom()} | {:error, String.t()}
+  @spec scan(path :: Path.t()) :: :ok | {:error, atom()} | {:error, String.t()}
   def scan(path) do
     @scanner.scan(path)
   end
@@ -42,7 +42,7 @@ defmodule Clamex do
       false
 
   """
-  @spec virus?(Path.t()) :: boolean
+  @spec virus?(path :: Path.t()) :: boolean
   def virus?(path) do
     case scan(path) do
       {:error, :virus_found} -> true
@@ -62,7 +62,7 @@ defmodule Clamex do
       true
 
   """
-  @spec safe?(Path.t()) :: boolean
+  @spec safe?(path :: Path.t()) :: boolean
   def safe?(path) do
     case scan(path) do
       :ok -> true

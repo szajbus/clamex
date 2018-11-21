@@ -1,4 +1,8 @@
 defmodule Clamex.Output do
+  @moduledoc """
+  Utilities to process scanner output.
+  """
+
   @doc """
   Extract error message from scanner's output.
 
