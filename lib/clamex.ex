@@ -3,8 +3,6 @@ defmodule Clamex do
   Clamex is a thin wrapper for ClamAV.
   """
 
-  @scanner Application.get_env(:clamex, :scanner, Clamex.Scanner.Clamdscan)
-
   @doc """
   Perform file scan
 
@@ -27,7 +25,7 @@ defmodule Clamex do
   """
   @spec scan(path :: Path.t()) :: :ok | {:error, atom()} | {:error, String.t()}
   def scan(path) do
-    @scanner.scan(path)
+    scanner().scan(path)
   end
 
   @doc """
@@ -68,5 +66,9 @@ defmodule Clamex do
       :ok -> true
       _ -> false
     end
+  end
+
+  defp scanner do
+    Application.get_env(:clamex, :scanner, Clamex.Scanner.Clamdscan)
   end
 end
