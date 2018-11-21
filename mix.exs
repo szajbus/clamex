@@ -35,7 +35,7 @@ defmodule Clamex.MixProject do
   end
 
   defp description do
-    "Thin, error-friendly wrapper for ClamAV"
+    "Thin, error-friendly and testable wrapper for ClamAV"
   end
 
   defp docs do

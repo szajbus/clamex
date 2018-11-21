@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/szajbus/clamex/tree/master.svg?style=svg)](https://circleci.com/gh/szajbus/clamex/tree/master)
 
-Clamex is a thin, error-friendly wrapper for [ClamAV](https://www.clamav.net) written in elixir.
+Clamex is a thin, error-friendly and testable wrapper for [ClamAV](https://www.clamav.net) written in elixir.
 
 ## Installation
 
@@ -27,10 +27,10 @@ It is recommended to have the ClamAV daemon (`clamd`) running in background and 
 The following is the package's default configuration.
 
 ```elixir
-config :clamex, executable_path: "clamdscan"
+config :clamex, scanner: Clamex.Scanner.Clamdscan
 ```
 
-If the `clamdscan` is not available in `$PATH` full path to it can be specified as `executable_path`.
+Alternatively, `Clamex.Scanner.Clamscan` or `Clamex.Scanner.Mock` (in tests, see below) can be used.
 
 ## Usage
 
@@ -71,6 +71,18 @@ Please check the documentation for other error reasons that may be returned by `
 ## Documentation
 
 Full documentation can be found at [https://hexdocs.pm/clamex](https://hexdocs.pm/clamex).
+
+## Testing
+
+You don't have to set ClamAV up in your test environment to test your application's behaviour with regard to file-scanning. You can simulate different scenarios: safe file, infected file, scanner not available, etc. using provided `Clamex.Scanner.Mock`.
+
+Configure your test environment in `config/test.exs`:
+
+```elixir
+config :clamex, scanner: Clamex.Scanner.Mock
+```
+
+Please check the [`Clamex.Scanner.Mock` documentation](https://hexdocs.pm/clamex/Clamex.Scanner.Mock.html#content) for example usage.
 
 ## License
 
