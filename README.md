@@ -84,6 +84,16 @@ config :clamex, scanner: Clamex.Scanner.Mock
 
 Please check the [`Clamex.Scanner.Mock` documentation](https://hexdocs.pm/clamex/Clamex.Scanner.Mock.html#content) for example usage.
 
+## State of the library
+
+`Clamex` is still experimental software.
+
+Since it uses third-party scanners by calling external programs behind the scenes, things may go wrong. One of the design goals is to wrap this process in fault-tolerant way, so that the applications using `Clamex` are not susceptible to unpredicted error scenarios.
+
+The most important aspect of the above is error-handling which is based on interpreting exit codes and parsing scanner's output.
+
+There may still be error messages returned by `cladmscan` or `clamscan` that are currently not covered by `Clamex`. If you encounter such situations, feel free to report an issue or send a pull request.
+
 ## License
 
 Copyright 2018 Michał Szajbe
