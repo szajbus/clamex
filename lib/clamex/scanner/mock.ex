@@ -1,6 +1,6 @@
 defmodule Clamex.Scanner.Mock do
   @moduledoc """
-  Mock scanner.
+  Mock scanner implementation.
 
   Provides responses without actually running any external scanner
   behind the scenes.

@@ -1,6 +1,6 @@
 defmodule Clamex.Scanner.Clamscan do
   @moduledoc """
-  Wrapper for `clamscan` command-line utility.
+  Scanner implementation for `clamscan` command-line utility.
   """
 
   @behaviour Clamex.Scanner
