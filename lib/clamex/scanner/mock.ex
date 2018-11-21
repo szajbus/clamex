@@ -16,13 +16,13 @@ defmodule Clamex.Scanner.Mock do
 
   ## Defined patterns
 
-  * `"virus*"`
-  * `"missing*"`
-  * `"no-daemon*"`
-  * `"no-scanner*"`
+  * `~r{virus}`
+  * `~r{missing}`
+  * `~r{no-daemon}`
+  * `~r{no-scanner}`
 
-  Because of wildcard-matching, paths with any extension can be matched,
-  e.g. `"virus.pdf"` or `"virus/image.png"`, depending on the test scenario.
+  Because of regex-matching, filenames with any leading path or extension can be
+  matched, e.g. `"virus.pdf"` or `"virus/image.png"`, depending on the test scenario.
 
   ## Examples
 
@@ -33,7 +33,7 @@ defmodule Clamex.Scanner.Mock do
 
   Pretend that file does not exist
 
-      iex> Clamex.Scanner.Mock.scan("missing.png")
+      iex> Clamex.Scanner.Mock.scan("path/to/missing.png")
       {:error, :cannot_access_file}
 
   Pretend that clamd daemon is not running in background
@@ -56,10 +56,10 @@ defmodule Clamex.Scanner.Mock do
               :ok | {:error, atom()} | {:error, String.t()}
   def scan(path) do
     cond do
-      path =~ ~r{^virus} -> {:error, :virus_found}
-      path =~ ~r{^missing} -> {:error, :cannot_access_file}
-      path =~ ~r{^no-daemon} -> {:error, :cannot_connect_to_clamd}
-      path =~ ~r{^no-scanner} -> {:error, :scanner_not_available}
+      path =~ ~r{virus} -> {:error, :virus_found}
+      path =~ ~r{missing} -> {:error, :cannot_access_file}
+      path =~ ~r{no-daemon} -> {:error, :cannot_connect_to_clamd}
+      path =~ ~r{no-scanner} -> {:error, :scanner_not_available}
       true -> :ok
     end
   end
