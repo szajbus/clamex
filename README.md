@@ -11,7 +11,7 @@ The package can be installed by adding `clamex` to your list of dependencies in 
 ```elixir
 def deps do
   [
-    {:clamex, "~> 0.2.1"}
+    {:clamex, "~> 0.2.2"}
   ]
 end
 ```
