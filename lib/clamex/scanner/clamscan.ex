@@ -26,7 +26,7 @@ defmodule Clamex.Scanner.Clamscan do
   """
   @impl true
   @spec scan(path :: Path.t()) ::
-              :ok | {:error, atom()} | {:error, String.t()}
+          :ok | {:error, atom()} | {:error, String.t()}
   def scan(path) do
     try do
       {output, exit_code} =
@@ -42,7 +42,11 @@ defmodule Clamex.Scanner.Clamscan do
         _ -> {:error, Clamex.Output.extract_error(output)}
       end
     rescue
-      :enoent -> {:error, :scanner_not_available}
+      error in ErlangError ->
+        case error.original do
+          :enoent -> {:error, :scanner_not_available}
+          _ -> raise error
+        end
     end
   end
 end
