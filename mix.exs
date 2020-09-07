@@ -22,7 +22,7 @@ defmodule Clamex.MixProject do
 
   defp deps do
     [
-      {:ex_doc, "~> 0.16.1", only: :dev}
+      {:ex_doc, "~> 0.19", only: :dev}
     ]
   end
 
